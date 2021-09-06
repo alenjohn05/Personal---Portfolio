@@ -134,3 +134,7 @@
   line-height: 16px;
   color: #ff0b37;
 }
+.error-field {
+  border: 1px solid #ff0b37;
+  background-color: #fef2f4;
+}

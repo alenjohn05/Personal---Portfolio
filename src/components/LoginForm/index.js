@@ -82,7 +82,7 @@ class LoginForm extends Component {
 
   renderPasswordField = () => {
     const { password, isValidatePass } = this.state;
-    const errorHighlight  = isValidatePass? 'error-color': ''
+    const errorHighlight  = isValidatePass? 'error-field': ''
     return (
       <>
         <label className="input-label" htmlFor="password">
@@ -103,7 +103,7 @@ class LoginForm extends Component {
 
   renderUsernameField = () => {
     const { username, isValidateName } = this.state;
-    const errorHighlight  = isValidateName? 'error-color': ''
+    const errorHighlight  = isValidateName? 'error-field': ''
     return (
       <>
         <label className="input-label" htmlFor="username">
