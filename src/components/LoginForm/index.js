@@ -1,53 +1,88 @@
-import {Component} from 'react'
-import './index.css'
+import { Component } from "react";
+import "./index.css";
 
 class LoginForm extends Component {
   state = {
-    username: '',
-    password: '',
+    username: "",
+    password: "",
     showSubmitError: false,
-    errorMessage: '',
-  }
+    errorMessage: "",
+    isValidatePass: false,
+    isValidateName: false,
+  };
 
-  onChangeUsername = event => {
-    this.setState({username: event.target.value})
-  }
+  onChangeUsername = (event) => {
+    this.setState({ username: event.target.value });
+  };
 
-  onChangePassword = event => {
-    this.setState({password: event.target.value})
-  }
+  onChangePassword = (event) => {
+    this.setState({ password: event.target.value });
+  };
 
   onSubmitSuccess = () => {
-    const {history} = this.props
+    const { history } = this.props;
 
-    history.replace('/')
-  }
+    history.replace("/");
+  };
 
-  onSubmitFailure = errorMessage => {
-    this.setState({showSubmitError: true, errorMessage})
-  }
-
-  submitForm = async event => {
-    event.preventDefault()
-    const {username, password} = this.state
-    const userDetails = {username, password}
-    const url = 'https://apis.ccbp.in/login'
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(userDetails),
-    }
-    const response = await fetch(url, options)
-    const data = await response.json()
-    if (response.ok === true) {
-      this.onSubmitSuccess()
+  onSubmitFailure = (errorMessage) => {
+    this.setState({ showSubmitError: true, errorMessage });
+  };
+  validatePassword = () => {
+    const { password } = this.state;
+    if (password === "") {
+      this.setState({
+        isValidatePass: true,
+      });
     } else {
-      this.onSubmitFailure(data.error_msg)
+      this.setState({
+        isValidatePass: false,
+      });
     }
-  }
+    return password !== "";
+  };
+
+  validateUserName = () => {
+    const { username } = this.state;
+    if (username === "") {
+      this.setState({
+        isValidateName: true,
+      });
+    } else {
+      this.setState({
+        isValidateName: false,
+      });
+    }
+
+    return username !== "";
+  };
+
+  submitForm = async (event) => {
+    event.preventDefault();
+    const { username, password } = this.state;
+    const isValidateUserName = this.validateUserName();
+    const isValidatePassword = this.validatePassword();
+
+    if (isValidatePassword && isValidateUserName) {
+      const userDetails = { username, password };
+      const url = "https://apis.ccbp.in/login";
+      const options = {
+        method: "POST",
+        body: JSON.stringify(userDetails),
+      };
+      const response = await fetch(url, options);
+      const data = await response.json();
+      if (response.ok === true) {
+        this.onSubmitSuccess();
+      } else {
+        this.onSubmitFailure(data.error_msg);
+      }
+    }
+  };
 
   renderPasswordField = () => {
-    const {password} = this.state
-
+    const { password, isValidatePass } = this.state;
+    const errorHighlight  = isValidatePass? 'error-color': ''
     return (
       <>
         <label className="input-label" htmlFor="password">
@@ -56,18 +91,19 @@ class LoginForm extends Component {
         <input
           type="password"
           id="password"
-          className="password-input-field"
+          className={`password-input-field ${errorHighlight}`}
           value={password}
           onChange={this.onChangePassword}
           placeholder="Password"
         />
+         {isValidatePass && <p className="error-message">Required</p>}
       </>
-    )
-  }
+    );
+  };
 
   renderUsernameField = () => {
-    const {username} = this.state
-
+    const { username, isValidateName } = this.state;
+    const errorHighlight  = isValidateName? 'error-color': ''
     return (
       <>
         <label className="input-label" htmlFor="username">
@@ -76,17 +112,18 @@ class LoginForm extends Component {
         <input
           type="text"
           id="username"
-          className="username-input-field"
+          className={`username-input-field ${errorHighlight}`}
           value={username}
           onChange={this.onChangeUsername}
           placeholder="Username"
         />
+        {isValidateName && <p className="error-message">Required</p>}
       </>
-    )
-  }
+    );
+  };
 
   render() {
-    const {showSubmitError, errorMessage} = this.state
+    const { showSubmitError, errorMessage } = this.state;
     return (
       <div className="login-form-container">
         <img
@@ -113,8 +150,8 @@ class LoginForm extends Component {
           {showSubmitError && <p className="error-message">*{errorMessage}</p>}
         </form>
       </div>
-    )
+    );
   }
 }
 
-export default LoginForm
+export default LoginForm;
