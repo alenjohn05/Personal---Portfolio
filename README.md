@@ -1,10 +1,4 @@
-# Authentication & Authorization | Part 3
+# On - Demand Session
 
-- Router Switch
-  - User Defined Components
-  - Redirect
-- Wrapper Component
-  - Protected Route
-- Integrating APIs
-  - Get All Products
-
+- Identifying the State
+- Updating the styles based on State
