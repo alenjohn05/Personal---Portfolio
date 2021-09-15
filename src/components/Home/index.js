@@ -9,7 +9,7 @@ const Home = () => (
         <h1 className="home-heading">Clothes That Get YOU Noticed</h1>
         <img
           src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-img.png"
-          alt="clothes that get you noticed"
+          alt="clothes to be noticed"
           className="home-mobile-img"
         />
         <p className="home-description">
@@ -25,7 +25,7 @@ const Home = () => (
       </div>
       <img
         src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-img.png"
-        alt="clothes that get you noticed"
+        alt="dresses to be noticed"
         className="home-desktop-img"
       />
     </div>

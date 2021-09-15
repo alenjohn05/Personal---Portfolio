@@ -1,52 +1,21 @@
 .nav-header {
   display: flex;
-  justify-content: space-around;
-}
-
-@media screen and (max-width: 768px) {
-  .nav-header {
-    flex-direction: column;
-  }
+  justify-content: center;
+  border-bottom: 1px solid rgb(243, 243, 243);
 }
 
 .nav-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 85%;
+  width: 90%;
   max-width: 1110px;
   padding-top: 25px;
   padding-bottom: 25px;
-  padding-left: 15px;
-}
-@media screen and (max-width: 768px) {
-  .nav-content {
-    flex-direction: column;
-    width: 100%;
-    padding-right: 15px;
-  }
-}
-
-.nav-bar-mobile-logo-container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-@media screen and (min-width: 768px) {
-  .nav-bar-mobile-logo-container {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .nav-bar-large-container {
-    display: none;
-  }
 }
 
 .website-logo {
-  width: 120px;
+  width: 110px;
 }
 
 @media screen and (min-width: 768px) {
@@ -62,32 +31,8 @@
   align-self: flex-end;
   flex: 1;
   list-style-type: none;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.nav-menu-mobile {
-  width: 100%;
-}
-
-@media screen and (min-width: 768px) {
-  .nav-menu-mobile {
-    display: none;
-  }
-}
-
-.nav-menu-list-mobile {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  height: 70px;
-  background-color: #e6f6ff;
-  flex: 1;
-  list-style-type: none;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  padding: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 767px) {
@@ -96,17 +41,13 @@
   }
 }
 
-.nav-menu-item {
+.nav-link {
   font-family: 'Roboto';
+  text-decoration: none;
   margin: 10px;
   font-weight: 400;
   font-size: 16px;
   color: #475569;
-}
-
-.nav-menu-item-mobile {
-  margin: 0px;
-  cursor: pointer;
 }
 
 .logout-desktop-btn {
@@ -114,13 +55,11 @@
   font-weight: 600;
   font-size: 10px;
   padding: 8px 16px;
-  color: #ffffff;
+  color: white;
   background-color: #0967d2;
   border: none;
   border-radius: 4px;
   margin-left: 14px;
-  cursor: pointer;
-  outline: none;
 }
 
 @media screen and (max-width: 767px) {
@@ -128,26 +67,19 @@
     display: none;
   }
 }
-.nav-mobile-btn-container {
-  display: flex;
-  justify-content: center;
-  width: 25%;
-}
 
-.nav-mobile-btn {
+.logout-mobile-btn {
   border: none;
   padding: 0px;
   background: transparent;
-  cursor: pointer;
-  outline: none;
 }
 
 @media screen and (min-width: 768px) {
-  .nav-mobile-btn {
+  .logout-mobile-btn {
     display: none;
   }
 }
 
-.nav-bar-image {
+.logout-icon {
   width: 24px;
 }

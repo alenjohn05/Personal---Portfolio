@@ -1,88 +1,61 @@
-import { Component } from "react";
-import "./index.css";
+import {Component} from 'react'
+import Cookies from 'js-cookie'
+import {Redirect} from 'react-router-dom'
+
+import './index.css'
 
 class LoginForm extends Component {
   state = {
-    username: "",
-    password: "",
+    username: '',
+    password: '',
     showSubmitError: false,
-    errorMessage: "",
-    isValidatePass: false,
-    isValidateName: false,
-  };
+    errorMsg: '',
+  }
 
-  onChangeUsername = (event) => {
-    this.setState({ username: event.target.value });
-  };
+  onChangeUsername = event => {
+    this.setState({username: event.target.value})
+  }
 
-  onChangePassword = (event) => {
-    this.setState({ password: event.target.value });
-  };
+  onChangePassword = event => {
+    this.setState({password: event.target.value})
+  }
 
-  onSubmitSuccess = () => {
-    const { history } = this.props;
+  onSubmitSuccess = jwtTkoken => {
+    const {history} = this.props
+    console.log('fdddfdfdf')
 
-    history.replace("/");
-  };
+    Cookies.set('jwt_token', jwtTkoken, {
+      expires: 30,
+      path: '/',
+    })
+    history.replace('/')
+  }
 
-  onSubmitFailure = (errorMessage) => {
-    this.setState({ showSubmitError: true, errorMessage });
-  };
-  validatePassword = () => {
-    const { password } = this.state;
-    if (password === "") {
-      this.setState({
-        isValidatePass: true,
-      });
+  onSubmitFailure = errorMsg => {
+    console.log(errorMsg)
+    this.setState({showSubmitError: true, errorMsg})
+  }
+
+  submitForm = async event => {
+    event.preventDefault()
+    const {username, password} = this.state
+    const userDetails = {username, password}
+    const url = 'https://apis.ccbp.in/login'
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(userDetails),
+    }
+    const response = await fetch(url, options)
+    const data = await response.json()
+    if (response.ok === true) {
+      this.onSubmitSuccess(data.jwt_token)
     } else {
-      this.setState({
-        isValidatePass: false,
-      });
+      this.onSubmitFailure(data.error_msg)
     }
-    return password !== "";
-  };
-
-  validateUserName = () => {
-    const { username } = this.state;
-    if (username === "") {
-      this.setState({
-        isValidateName: true,
-      });
-    } else {
-      this.setState({
-        isValidateName: false,
-      });
-    }
-
-    return username !== "";
-  };
-
-  submitForm = async (event) => {
-    event.preventDefault();
-    const { username, password } = this.state;
-    const isValidateUserName = this.validateUserName();
-    const isValidatePassword = this.validatePassword();
-
-    if (isValidatePassword && isValidateUserName) {
-      const userDetails = { username, password };
-      const url = "https://apis.ccbp.in/login";
-      const options = {
-        method: "POST",
-        body: JSON.stringify(userDetails),
-      };
-      const response = await fetch(url, options);
-      const data = await response.json();
-      if (response.ok === true) {
-        this.onSubmitSuccess();
-      } else {
-        this.onSubmitFailure(data.error_msg);
-      }
-    }
-  };
+  }
 
   renderPasswordField = () => {
-    const { password, isValidatePass } = this.state;
-    const errorHighlight  = isValidatePass? 'error-field': ''
+    const {password} = this.state
     return (
       <>
         <label className="input-label" htmlFor="password">
@@ -91,19 +64,16 @@ class LoginForm extends Component {
         <input
           type="password"
           id="password"
-          className={`password-input-field ${errorHighlight}`}
+          className="password-input-field"
           value={password}
           onChange={this.onChangePassword}
-          placeholder="Password"
         />
-         {isValidatePass && <p className="error-message">Required</p>}
       </>
-    );
-  };
+    )
+  }
 
   renderUsernameField = () => {
-    const { username, isValidateName } = this.state;
-    const errorHighlight  = isValidateName? 'error-field': ''
+    const {username} = this.state
     return (
       <>
         <label className="input-label" htmlFor="username">
@@ -112,18 +82,20 @@ class LoginForm extends Component {
         <input
           type="text"
           id="username"
-          className={`username-input-field ${errorHighlight}`}
+          className="username-input-field"
           value={username}
           onChange={this.onChangeUsername}
-          placeholder="Username"
         />
-        {isValidateName && <p className="error-message">Required</p>}
       </>
-    );
-  };
+    )
+  }
 
   render() {
-    const { showSubmitError, errorMessage } = this.state;
+    const {showSubmitError, errorMsg} = this.state
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken !== undefined) {
+      return <Redirect to="/" />
+    }
     return (
       <div className="login-form-container">
         <img
@@ -147,11 +119,11 @@ class LoginForm extends Component {
           <button type="submit" className="login-button">
             Login
           </button>
-          {showSubmitError && <p className="error-message">*{errorMessage}</p>}
+          {showSubmitError && <p className="error-message">*{errorMsg}</p>}
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default LoginForm;
+export default LoginForm
