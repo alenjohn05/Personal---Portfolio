@@ -1,34 +1,29 @@
-import './index.css'
+import { ImBehance2, ImGithub, ImLinkedin } from "react-icons/im";
+import "./index.css";
 
 const Header = () => (
   <nav className="nav-header">
     <div className="nav-content">
-      <p className="website-logo">RA</p>
+      <p className="website-logo">AJ</p>
       <ul className="nav-menu">
         <li>
-          <img
-            className="social-network-img"
-            src="https://image.flaticon.com/icons/png/512/174/174857.png"
-            alt="Linked In"
-          />
+          <a href="https://www.linkedin.com/in/alen-john-aj/">
+            <ImLinkedin className="social-network-img" />
+          </a>
         </li>
         <li>
-          <img
-            className="social-network-img"
-            src="https://image.flaticon.com/icons/png/512/25/25231.png"
-            alt="Git Hub"
-          />
+          <a href="https://github.com/alenjohn05">
+            <ImGithub className="social-network-img" />
+          </a>
         </li>
         <li>
-          <img
-            className="social-network-img"
-            src="https://res.cloudinary.com/dmwrugc6z/image/upload/v1621681890/Background_4x_1_bzyjew.png"
-            alt="Twitter"
-          />
+          <a href="https://www.behance.net/alenjohn05">
+            <ImBehance2 className="social-network-img" />
+          </a>
         </li>
       </ul>
     </div>
   </nav>
-)
+);
 
-export default Header
+export default Header;

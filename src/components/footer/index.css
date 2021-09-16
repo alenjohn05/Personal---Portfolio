@@ -1,0 +1,12 @@
+.footer{
+    background-color: #fff;
+    text-align: center;
+    height: 40px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.footer-title{
+    color: #000000;
+    font-size: 13px;
+    margin-top: 10px;
+}

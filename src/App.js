@@ -5,11 +5,14 @@ import ProjectItem from './components/ProjectItem'
 import Header from './components/Header'
 
 import './App.css'
+import Skills from './components/Skills'
+import Footer from './components/footer'
+import Hero from './components/herosection'
 
 const tabsList = [
-  {tabId: 'STATIC', displayText: 'Static'},
-  {tabId: 'RESPONSIVE', displayText: 'Responsive'},
   {tabId: 'DYNAMIC', displayText: 'Dynamic'},
+  {tabId: 'UIUX-DESIGN', displayText: 'UiUx Design'},
+  {tabId: 'STATIC', displayText: 'Static'},
 ]
 
 const projectsList = [
@@ -37,44 +40,44 @@ const projectsList = [
     description:
       'A website that gives you a basic understanding of Advanced Technologies.',
   },
-     {
-       projectId: 3,
-       category: 'STATIC',
-       imageURL: 'https://assets.ccbp.in/frontend/react-js/projects-s2-img.png',
-       title: 'Happy Meals',
-       description: 'Discover the best foods in over 1,000 restaurants.',
-     },
+    //  {
+    //    projectId: 3,
+    //    category: 'STATIC',
+    //    imageURL: 'https://assets.ccbp.in/frontend/react-js/projects-s2-img.png',
+    //    title: 'Happy Meals',
+    //    description: 'Discover the best foods in over 1,000 restaurants.',
+    //  },
   {
     projectId: 4,
-    category: 'RESPONSIVE',
-    imageURL: 'https://assets.ccbp.in/frontend/react-js/projects-r4-img.png',
-    title: 'VR Website',
+    category: 'UIUX-DESIGN',
+    imageURL: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/c306b6122756835.60e056e288a49.png',
+    title: 'Mercedes-Benz Website Redesign',
     description:
-      'VR Website enables users to explore AR and VR Products and Industry happenings.',
+      'Mercedes-Benz Website UI Redesign, created with various creative Adobe Creative Tools',
   },
   {
     projectId: 5,
-    category: 'RESPONSIVE',
-    imageURL: 'https://assets.ccbp.in/frontend/react-js/projects-r2-img.png',
-    title: 'Food Munch',
-    description: 'Food Much Website is a user-centric food tech website.',
+    category: 'UIUX-DESIGN',
+    imageURL: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/795e66122693301.60dedf778d712.png',
+    title: 'Caytrex WebApp',
+    description: 'A Website Ui Design of a Crypto Currency App ',
   },
   {
     projectId: 6,
-    category: 'RESPONSIVE',
-    imageURL: 'https://assets.ccbp.in/frontend/react-js/projects-r3-img.png',
-    title: 'Portfolio',
+    category: 'UIUX-DESIGN',
+    imageURL: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/ea4d0c122727071.60dff3dad2327.png',
+    title: 'Imperial - Real Estate Web Design Project',
     description:
-      'A portfolio is the best alternative for a resume to showcase your skills to the digital world.',
+      'A Real Estate Website Ui Design Project with mobile prototype design.',
   },
- {
-   projectId: 7,
-   category: 'RESPONSIVE',
-   imageURL: 'https://assets.ccbp.in/frontend/react-js/projects-r1-img.png',
-   title: 'Design',
-   description:
-     'A website to showcase the best features and give more information about the Design tool.',
- },
+//  {
+//    projectId: 7,
+//    category: 'UIUX-DESIGN',
+//    imageURL: 'https://assets.ccbp.in/frontend/react-js/projects-r1-img.png',
+//    title: 'Design',
+//    description:
+//      'A website to showcase the best features and give more information about the Design tool.',
+//  },
   {
     projectId: 8,
     category: 'DYNAMIC',
@@ -124,7 +127,9 @@ class App extends Component {
     return (
       <div className="app-container">
         <Header />
-        <h1 className="title">Projects</h1>
+        <Hero/>
+        <Skills/>
+        <h1 className="title"> 🏅 My Projects</h1>
         <p className="description">
           Your skills and achievements showcase your strengths and abilities.
           Speak about any new skills or software you learnt to perform the
@@ -150,6 +155,7 @@ class App extends Component {
             />
           ))}
         </ul>
+        <Footer/>
       </div>
     )
   }
