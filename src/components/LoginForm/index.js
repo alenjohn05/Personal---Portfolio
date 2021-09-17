@@ -20,11 +20,10 @@ class LoginForm extends Component {
     this.setState({password: event.target.value})
   }
 
-  onSubmitSuccess = jwtTkoken => {
+  onSubmitSuccess = jwtToken => {
     const {history} = this.props
-    console.log('fdddfdfdf')
 
-    Cookies.set('jwt_token', jwtTkoken, {
+    Cookies.set('jwt_token', jwtToken, {
       expires: 30,
       path: '/',
     })
@@ -32,7 +31,6 @@ class LoginForm extends Component {
   }
 
   onSubmitFailure = errorMsg => {
-    console.log(errorMsg)
     this.setState({showSubmitError: true, errorMsg})
   }
 
@@ -67,6 +65,7 @@ class LoginForm extends Component {
           className="password-input-field"
           value={password}
           onChange={this.onChangePassword}
+          placeholder="Password"
         />
       </>
     )
@@ -85,6 +84,7 @@ class LoginForm extends Component {
           className="username-input-field"
           value={username}
           onChange={this.onChangeUsername}
+          placeholder="Username"
         />
       </>
     )
